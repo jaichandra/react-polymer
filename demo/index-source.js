@@ -35,6 +35,10 @@ var App = React.createClass({
       this.setState({text: event.target.value})
     }
   },
+  buttonClick (event) {
+    console.log('buttonClick, new value: %s', event.target.value)
+    alert('Polymer button clicked');
+  },
   textareaChange (event) {
     console.log('textareaChange, new value: %s', event.target.value)
     if (this.state.editable) {
@@ -75,32 +79,32 @@ var App = React.createClass({
             <tr>
               <td />
               <td>Native</td>
-              <td>Paper</td>
-              <td>Iron</td>
+              <td>Polymer</td>
+            </tr>
+            <tr>
+              <td>Button</td>
+              <td><button onClick={this.buttonClick}>{this.state.text}</button></td>
+              <td><nd-button onClick={this.buttonClick}>{this.state.text}</nd-button></td>
             </tr>
             <tr>
               <td>Text</td>
               <td><input type='text' value={this.state.text} onChange={this.textChange} /></td>
               <td><PaperInput label='Label' value={this.state.text} onChange={this.textChange} /></td>
-              <td><input is='iron-input' value={this.state.text} onChange={this.textChange} /></td>
             </tr>
             <tr>
               <td>Textarea</td>
               <td><textarea value={this.state.textarea} onChange={this.textareaChange} /></td>
               <td><PaperTextarea label='Label' value={this.state.textarea} onChange={this.textareaChange} /></td>
-              <td><IronAutogrowTextarea value={this.state.textarea} onChange={this.textareaChange} /></td>
             </tr>
             <tr>
               <td>Slider</td>
               <td><input type='range' value={this.state.value} onChange={this.valueChange} /></td>
               <td><PaperSlider value={this.state.value} onChange={this.valueChange} /></td>
-              <td />
             </tr>
             <tr>
               <td rowSpan='2'>Checkbox</td>
               <td rowSpan='2'><input type='checkbox' checked={this.state.checked} onChange={this.checkedChange} /></td>
               <td><PaperCheckbox checked={this.state.checked} onChange={this.checkedChange}>Label</PaperCheckbox></td>
-              <td rowSpan='2' />
             </tr>
             <tr>
               <td><PaperToggleButton checked={this.state.checked} onChange={this.checkedChange} /></td>
@@ -119,7 +123,6 @@ var App = React.createClass({
                   <paper-radio-button name='large'>Large</paper-radio-button>
                 </PaperRadioGroup>
               </td>
-              <td />
             </tr>
             <tr>
               <td>Dropdown</td>
@@ -141,7 +144,6 @@ var App = React.createClass({
                   </PaperMenu>
                 </paper-dropdown-menu>
               </td>
-              <td />
             </tr>
             <tr>
               <td rowSpan='2'>Selector</td>
@@ -153,13 +155,7 @@ var App = React.createClass({
                   <paper-tab value='large'>Large</paper-tab>
                 </PaperTabs>
               </td>
-              <td rowSpan='2'>
-                <IronSelector attr-for-selected='name' selected={this.state.selected} onChange={this.selectedChange}>
-                  <div name='small'>Small</div>
-                  <div name='medium'>Medium</div>
-                  <div name='large'>Large</div>
-                </IronSelector>
-              </td>
+              
             </tr>
             <tr>
               <td>
